@@ -226,7 +226,7 @@ export class MdcDrawer extends MDCComponent<MDCDismissibleDrawerFoundation | MDC
       (fromEvent(this._elementRef.nativeElement, 'keydown') as Observable<KeyboardEvent>)
         .pipe(takeUntil(this._destroyed)).subscribe(event => this._ngZone.run(() => {
           this._foundation.handleKeydown(event);
-          if (this.modal) {
+          if (this.modal && (event.key === 'Escape' || event.key === 'Esc')) {
             event.stopPropagation();
             event.preventDefault();
           }
